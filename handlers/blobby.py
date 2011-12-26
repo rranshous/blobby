@@ -10,7 +10,7 @@ class BlobbySimpleDiskHandler(object):
     ## CODE ASSUMES ONLY ONE SERVICE RUNNING AGAINST THE
     ## SAME DATA SOURCE
 
-    def get(self, bhash):
+    def get_data(self, bhash):
         try:
             path = self.get_data_path(bhash)
             if not os.path.exists(path):
@@ -21,7 +21,7 @@ class BlobbySimpleDiskHandler(object):
         except Exception, ex:
             raise o.Exception('oException get: %s %s' % (bhash,ex))
 
-    def set(self, data):
+    def set_data(self, data):
         try:
             bhash = self.get_data_bhash(data)
             path = self.get_data_path(bhash)
@@ -30,7 +30,7 @@ class BlobbySimpleDiskHandler(object):
         except Exception, ex:
             raise o.Exception('oException set: %s %s' % (bhash,ex))
 
-    def delete(self, bhash):
+    def delete_set(self, bhash):
         path = self.get_data_path(bhash)
         try:
             if not os.path.exists(path):

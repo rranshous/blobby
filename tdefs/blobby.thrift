@@ -1,4 +1,4 @@
-namespace blobby
+namespace py blobby
 
 /*
 simple blob server
@@ -13,14 +13,14 @@ exception Exception
 /* content based blob server, the keys are the hashes */
 service Blobby {
     // returns the data
-    string get (1: string bhash)
+    string get_data (1: string bhash)
     throws (1: Exception ex);
 
     // returns the bhash 
-    string set (1: string data)
+    string set_data (1: string data)
     throws (1: Exception ex);
 
     // deletes the data
-    bool delete (1: string bhash)
+    bool delete_data (1: string bhash)
     throws (1: Exception ex);
 }
