@@ -1,4 +1,4 @@
-from blobby import Blobby, ttypes as o
+from tgen.blobby import Blobby, ttypes as o
 
 class BlobbySimpleDiskHandler(object):
     """
