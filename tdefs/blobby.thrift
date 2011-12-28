@@ -23,4 +23,7 @@ service Blobby {
     // deletes the data
     bool delete_data (1: string bhash)
     throws (1: Exception ex);
+
+    string get_data_bhash (1: string data)
+    throws (1: Exception ex);
 }

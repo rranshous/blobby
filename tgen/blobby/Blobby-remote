@@ -24,6 +24,7 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print '  string get_data(string bhash)'
   print '  string set_data(string data)'
   print '  bool delete_data(string bhash)'
+  print '  string get_data_bhash(string data)'
   print ''
   sys.exit(0)
 
@@ -91,6 +92,12 @@ elif cmd == 'delete_data':
     print 'delete_data requires 1 args'
     sys.exit(1)
   pp.pprint(client.delete_data(args[0],))
+
+elif cmd == 'get_data_bhash':
+  if len(args) != 1:
+    print 'get_data_bhash requires 1 args'
+    sys.exit(1)
+  pp.pprint(client.get_data_bhash(args[0],))
 
 else:
   print 'Unrecognized method %s' % cmd

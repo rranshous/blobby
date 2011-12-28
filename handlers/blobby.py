@@ -48,7 +48,6 @@ class BlobbySimpleDiskHandler(object):
             raise o.Exception('oException delete: %s %s' % (bhash,ex))
         return True
 
-
     def get_data_path(self, bhash):
         return os.path.join(self.save_root,bhash)
 
