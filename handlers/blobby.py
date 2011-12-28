@@ -17,6 +17,7 @@ class BlobbySimpleDiskHandler(object):
 
     def get_data(self, bhash):
         try:
+            print 'get_data: %s' % bhash
             path = self.get_data_path(bhash)
             if not os.path.exists(path):
                 # we could use a raise here instead
@@ -29,6 +30,7 @@ class BlobbySimpleDiskHandler(object):
 
     def set_data(self, data):
         try:
+            print 'set_data: %s' % len(data)
             bhash = self.get_data_bhash(data)
             path = self.get_data_path(bhash)
             with open(path,'w') as fh:
@@ -39,6 +41,7 @@ class BlobbySimpleDiskHandler(object):
         return bhash
 
     def delete_data(self, bhash):
+        print 'delete_data: %s' % bhash
         path = self.get_data_path(bhash)
         try:
             if not os.path.exists(path):
@@ -52,6 +55,7 @@ class BlobbySimpleDiskHandler(object):
         return os.path.join(self.save_root,bhash)
 
     def get_data_bhash(self, data):
+        print 'get_data_bhash: %s' % len(data)
         return sha1(data).hexdigest()
 
 def run():
