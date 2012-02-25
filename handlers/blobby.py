@@ -33,8 +33,16 @@ class BlobbySimpleDiskHandler(object):
             print 'set_data: %s' % len(data)
             bhash = self.get_data_bhash(data)
             path = self.get_data_path(bhash)
-            with open(path,'w') as fh:
-                fh.write(data)
+            # don't bother writing it down if it exists
+            if not os.path.exists(path):
+                with open(path,'w') as fh:
+                    fh.write(data)
+
+                self.revent.fire('data_added',{
+                    'hash':bhash,
+                    'size':len(data)
+                })
+
         except Exception, ex:
             raise o.Exception('oException set: %s %s' % (len(data),ex))
 
@@ -47,6 +55,11 @@ class BlobbySimpleDiskHandler(object):
             if not os.path.exists(path):
                 return False
             os.unlink(path)
+
+            self.revent.fire('data_deleted',{
+                'hash':bhash
+            })
+
         except Exception, ex:
             raise o.Exception('oException delete: %s %s' % (bhash,ex))
         return True
